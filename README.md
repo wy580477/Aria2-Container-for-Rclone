@@ -5,7 +5,7 @@
 
 ## 概述
 
-基于本人 [Aria2-AIO-Container](https://github.com/wy580477/Aria2-AIO-Container) Aria2全能容器项目精简而来，适合已经部署了Web服务的情况下配置反代使用。
+基于本人 [Aria2-AIO-Container](https://github.com/wy580477/Aria2-AIO-Container) Aria2全能容器项目精简而来，适合家庭局域网环境或者已经部署了Web服务的情况下配置反代使用。
 集成了Aria2和经过修改的P3TERX大佬Aria2自动化脚本，与[Rclone-Daemon-Container](https://github.com/wy580477/Aria2-AIO-Container)配合，实现自动化上传功能。
  
  1. 开箱即用，只需要准备rclone.conf配置文件, 容器一切配置都预备齐全。
