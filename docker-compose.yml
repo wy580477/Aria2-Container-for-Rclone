@@ -65,6 +65,9 @@ services:
       # 是否禁止ipv6。
       - --enable-dht6=false
       # 是否启用dht ipv6网络。
+      - --show-console-readout=false
+      # 禁止控制台输出信息，可以解决日志被刷屏问题，不会影响与Rclone联动相关信息的日志。
+      - --enable-mmap=true
       # 可以添加更多运行参数，将覆盖Aria2配置文件中的相同选项。更多信息详见官网：https://aria2.github.io/manual/en/html/aria2c.html
   rclone_daemon:
     <<: *global
