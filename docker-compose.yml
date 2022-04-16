@@ -36,6 +36,8 @@ services:
     # 建议对docker不熟悉的用户选择host网络模式。
     environment:
       <<: *env
+      RPC_PORT: 6800
+      # Aria2远程RPC服务端口。
       POST_MODE: copy_remote
       # Aria2自动化模式，dummy模式为无操作，move模式为下载及做种完成后移动到本地finished目录。
       # move_remote模式为下载及做种完成后先移动到本地data数据卷下finished目录，然后移动到rclone远程存储。
@@ -56,8 +58,6 @@ services:
       # DHT监听端口。
       - --listen-port=51413
       # BT监听端口。建议与上一项设置为同一端口，防火墙放行tcp和udp流量。
-      - --rpc-listen-port=6800
-      # RPC服务监听端口。
       - --rpc-listen-all=true
       # 是否接受来自外部ip的rpc连接，仅建议在家庭局域网环境内可设置为true，便于直接访问。
       # 如果通过Web服务反代，可以设置为false。
@@ -65,6 +65,7 @@ services:
       # 是否禁止ipv6。
       - --enable-dht6=false
       # 是否启用dht ipv6网络。
+      # 可以添加更多运行参数，将覆盖Aria2配置文件中的相同选项。更多信息详见官网：https://aria2.github.io/manual/en/html/aria2c.html
   rclone_daemon:
     <<: *global
     image: ghcr.io/wy580477/rclone-daemon-container:latest
