@@ -65,7 +65,6 @@ services:
       # 是否禁止ipv6。
       - --enable-dht6=false
       # 是否启用dht ipv6网络。
-      # 可以增加更多运行参数，会覆盖Aria2配置文件中的设置。更多运行参数可以参考Aria2官网和config/aria2目录下的配置文件。
   rclone_daemon:
     <<: *global
     image: ghcr.io/wy580477/rclone-daemon-container:latest
