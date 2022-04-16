@@ -30,7 +30,7 @@ x-global: &global
 services:
   aria2:
     <<: *global
-    image: ghcr.io/wy580477/aria2-container-for-rclone:main
+    image: ghcr.io/wy580477/aria2-container-for-rclone:latest
     container_name: aria2
     network_mode: host
     # 建议对docker不熟悉的用户选择host网络模式。
