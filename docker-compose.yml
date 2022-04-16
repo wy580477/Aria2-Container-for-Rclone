@@ -3,9 +3,9 @@ x-env:
 # 全局变量设置
   environment: &env
     USER: admin
-    # 用户名，适用于所有需要输入用户名的Web服务。
+    # Rclone用户名。
     PASSWORD: password
-    # 务必设置为强密码。同样适用于所有需要输入密码的Web服务，同时也是Aria2的RPC密钥。
+    # Rclone密码，同时也是Aria2的RPC密钥，务必设置为强密码。
     PUID: 0
     PGID: 0
     # 设置用户uid和gid，如需以非特权用户运行容器内进程，设置为1000以上即可。
@@ -36,19 +36,8 @@ services:
     # 建议对docker不熟悉的用户选择host网络模式。
     environment:
       <<: *env
-      DOMAIN:
-      # 域名设置为有效域名（可以解析到你的host）,并且80和443端口面向公网开放，就可启用caddy的自动申请证书开启https功能。
-      # 设置为http://localhost，则监听本地回环地址提供http服务。
-      # 设置为空值，则对外部ip开放http服务，不建议在家庭局域网以外的环境使用。
-      EMAIL: internal
-      # 接受证书颁发机构通知邮件的地址，可以填虚假地址。
-      # 默认值internal为使用caddy自签证书。
-      WEB_PORT: 443
-      # 提供Web服务的端口，如果要关闭caddy自动https功能，需设置为非443端口。
-      LANGUAGE: chs
-      # 设置导航页和Filebrowser界面语言为中文，可选en（英文）。
-      PORTAL_PATH: /portal
-      # 导航页路径和所有Web服务基础URL，不能为空值和"/"后面不能加"/"。建议设置为不常见的字符串，防止字典爆破攻击。
+      RPC_PORT: 6800
+      # 提供Aria2 RPC服务的端口。
       ARIA_IPV6: "false"
       # Aria2下载功能和DHT网络ipv6开关，不影响其他进程使用ipv6网络。设置为"true"开启ipv6。
       BT_PORT: 51413
