@@ -79,9 +79,11 @@ services:
     ports:
       - "127.0.0.1:56802:5572"
       # 如果需要外部ip直接访问RC功能，设置为"56802:5572",建议仅在家庭局域网中使用。
-      # 如果上面aria2容器使用bridge网络模式，将使用docker内部网络通信，可以删除此项。
     command:
-      - --rc-serve
+      - --rc-web-gui
+      # 自动下载Rclone Web UI，并使用内置http服务器在RC端口提供服务。
+   #  - --rc-serve
+      # 启用内置的http服务器在RC端口提供远程存储浏览，和上面的选项二选一。
       - --config /mnt/config/rclone.conf
       - --rc-allow-origin=*
       - --use-mmap
