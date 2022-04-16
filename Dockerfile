@@ -20,8 +20,8 @@ RUN apk add --no-cache curl jq aria2 bash findutils su-exec tzdata \
 VOLUME /mnt/data /mnt/config
 
 LABEL org.opencontainers.image.authors="wy580477@outlook.com"
-LABEL org.label-schema.name="Aria2-AIO-Container"
-LABEL org.label-schema.description="Aria2 container with Rclone auto-upload function & more"
-LABEL org.label-schema.vcs-url="https://github.com/wy580477/Aria2-AIO-Container/"
+LABEL org.label-schema.name="Aria2-Container-for-Rclone"
+LABEL org.label-schema.description="Aria2 container with Rclone auto-upload function"
+LABEL org.label-schema.vcs-url="https://github.com/wy580477/Aria2-Container-for-Rclone"
 
 ENTRYPOINT ["sh","/workdir/entrypoint.sh"]
