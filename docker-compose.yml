@@ -72,7 +72,7 @@ services:
       <<: *env
     ports:
       - "127.0.0.1:56802:5572"
-      # 如果上面allinone容器使用bridge网络模式，将使用docker内部网络通信，可以删除此项。
+      # 如果上面aria2容器使用bridge网络模式，将使用docker内部网络通信，可以删除此项。
     command:
       - --rc-serve
       - --config /mnt/config/rclone.conf
