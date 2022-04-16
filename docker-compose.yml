@@ -3,9 +3,9 @@ x-env:
 # 全局变量设置
   environment: &env
     USER: admin
-    # Rclone用户名。
+    # Rclone远程控制用户名。
     PASSWORD: password
-    # Rclone密码，同时也是Aria2的RPC密钥，务必设置为强密码。
+    # Rclone远程密码，同时也是Aria2的RPC密钥，务必设置为强密码。
     PUID: 0
     PGID: 0
     # 设置用户uid和gid，如需以非特权用户运行容器内进程，设置为1000以上即可。
@@ -58,6 +58,9 @@ services:
       # BT监听端口。建议与上一项设置为同一端口，防火墙放行tcp和udp流量。
       - --rpc-listen-port=6800
       # RPC服务监听端口。
+      - --rpc-listen-all=true
+      # 是否接受来自外部ip的rpc连接，仅建议在家庭局域网环境内可设置为true，便于直接访问。
+      # 如果通过Web服务反代，可以设置为false。
       - --disable-ipv6=true
       # 是否禁止ipv6。
       - --enable-dht6=false
@@ -72,6 +75,7 @@ services:
       <<: *env
     ports:
       - "127.0.0.1:56802:5572"
+      # 如果需要外部ip直接访问RC功能，设置为"56802:5572",建议仅在家庭局域网中使用。
       # 如果上面aria2容器使用bridge网络模式，将使用docker内部网络通信，可以删除此项。
     command:
       - --rc-serve
