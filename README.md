@@ -11,11 +11,8 @@
  
  1. 开箱即用，只需要准备rclone.conf配置文件, 容器一切配置都预备齐全。
  2. AMD64/i386/Arm64/Armv7多架构支持。
- 3. 由caddy反代所有web服务和远程控制路径，均有密码保护，可自定义基础URL防爆破，并可使用caddy的自动https功能。
- 4. 可自定义内容导航页，显示当前容器运行信息。
  5. Aria2和Rclone多种联动模式，有BT下载完成做种前立即开始上传功能，适合有长时间做种需求的用户。
- 6. 独立的Rclone容器以daemon方式运行，方便实时在WebUI上监测传输情况，可在docker-compose文件中自定义运行参数。
- 7. 基于 [runit](http://smarden.org/runit/index.html) 的进程管理，每个进程可以独立启停，互不影响。
+ 6. 独立的Rclone容器以daemon方式运行，可在docker-compose文件中自定义运行参数。
  8. 所有配置集中于config数据卷，方便迁移。
  9. 支持PUID/GUID方式以非root用户运行容器内进程。
 
@@ -26,11 +23,6 @@
  3. 按说明设置好变量，用如下命令运行容器。
 ```
 docker-compose up -d
-```
- 4. 按ip地址或域名+基础URL就可打开导航页，随后打开AriaNg，将变量中的密码填入AriaNg设置中的RPC密钥即可连接Aria2。
- 5. 打开Filebrowser页面，将事先准备好的rclone.conf配置文件上传到config目录下，运行如下命令重启容器即可让Aria2—Rclone联动功能生效。
-```
-docker restart allinone
 ```
 
 ### 更多用法和注意事项
