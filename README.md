@@ -1,8 +1,7 @@
 ## 鸣谢
 
 - [P3TERX/aria2.conf](https://github.com/P3TERX/aria2.conf)  依靠来自P3TERX大佬的Aria2脚本，实现了Aria2下载完成自动触发Rclone上传。
-- [wahyd4/aria2-ariang-docker](https://github.com/wahyd4/aria2-ariang-docker)  启发了本项目的总体思路。
-- [bastienwirtz/homer](https://github.com/bastienwirtz/homer)  使用yaml配置文件的静态导航页，非常便于自定义。
+
 
 ## 概述
 
@@ -35,26 +34,9 @@ docker restart allinone
 ```
 
 ### 更多用法和注意事项
-
- 1. 考虑安全原因Filebrowser初始用户无管理员权限，如需要管理员权限，执行下列命令：
-```
-docker exec -it allinone sh
-# 进入容器shell
-sv stop filebrowser
-# 停止filebrowser服务
-filebrowser -d /mnt/config/filebrowser.db users add 用户名 密码 --perm.admin
-# 新建管理员用户。也可以使用user update 用户名 --perm.admin命令赋予现有用户管理员权限。
-sv start filebrowser
-# 启动filebrowser服务
-```        
- 2. 删除config目录下filebrowser.db文件可重置filebrowser所有设置。
- 3. 无法通过Rclone Web UI远程设置需要网页认证的远程存储配置，建议在本地桌面系统上运行rclone config使用命令行配置或者rclone rcd使用Web UI网页配置。
- 4. caddy如果频繁申请证书会被限制导致启动失败，所以如果使用自动https功能，config目录下caddy目录不要随意删除/移动。
  5. config/aria2目录下为Aria2相关配置文件，按语言变量选择版本进行修改。   
     script.conf为Aria2自动化配置文件，可以更改文件自动清理设置和指定Rclone上传目录。   
     执行tracker.sh可自动下载tracker列表添加到aria2配置文件，注意这样会覆盖原来的tracker列表。
- 7. config/homer_conf目录下为导航页配置文件和图标资源，配置文件详解见：https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md  
-    添加到此目录下的图标文件，要在配置文件中以./assets/tools/example.png这样的路径调用。
     
  
 
