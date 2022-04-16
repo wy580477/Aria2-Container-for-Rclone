@@ -63,10 +63,10 @@ services:
       - --enable-dht6=false
       # 是否启用dht ipv6网络。
       # 可以增加更多运行参数，会覆盖Aria2配置文件中的设置。更多运行参数可以参考Aria2官网和config/aria2目录下的配置文件。
-  allinone_rclone:
+  rclone_daemon:
     <<: *global
     image: ghcr.io/wy580477/rclone-daemon-container:latest
-    container_name: allineone_rclone
+    container_name: rclone_daemon
     hostname: rclone
     environment:
       <<: *env
