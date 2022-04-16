@@ -54,4 +54,5 @@ fi
 
 # Run aria2
 exec su-exec ${PUID}:${PGID} aria2c --conf-path="/workdir/aria2.conf" \
---enable-rpc $@
+--enable-rpc \
+--rpc-listen-port=${RPC_PORT} $@
