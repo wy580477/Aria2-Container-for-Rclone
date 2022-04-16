@@ -6,9 +6,9 @@ if [ "${MODE}" = "build" ]; then
 fi
 
 if [ "${PUID}" != "0" ]; then
-    mkdir -p /mnt/data/downloads /mnt/data/finished 2>/dev/null
-    chown -R ${PUID}:${PGID} /workdir /mnt/config 2>/dev/null
-    chown ${PUID}:${PGID} /mnt/data /mnt/data/downloads /mnt/data/finished
+       mkdir -p /mnt/data/downloads /mnt/data/finished 2>/dev/null
+       chown -R ${PUID}:${PGID} /workdir /mnt/config 2>/dev/null
+       chown ${PUID}:${PGID} /mnt/data /mnt/data/downloads /mnt/data/finished
 fi
 
 # Configure aria2
@@ -25,14 +25,6 @@ fi
 
 cp /mnt/config/aria2/aria2.conf /workdir/aria2.conf
 sed -i "s|^rpc-secret=.*|rpc-secret=${PASSWORD}|g" /workdir/aria2.conf
-
-if [ "${ARIA_IPV6}" = "true" ]; then
-       sed -i "s|^disable-ipv6=.*|disable-ipv6=false|g" /workdir/aria2.conf
-       sed -i "s|^enable-dht6=.*|enable-dht6=true|g" /workdir/aria2.conf
-else
-       sed -i "s|^disable-ipv6=.*|disable-ipv6=true|g" /workdir/aria2.conf
-       sed -i "s|^enable-dht6=.*|enable-dht6=false|g" /workdir/aria2.conf
-fi
 
 if [ "${AUTO_DRIVE_NAME}" = "true" ]; then
        DRIVE_NAME_AUTO="$(sed -n '1p' /mnt/config/rclone.conf | sed "s/\[//g" | sed "s/\]//g")"
@@ -62,7 +54,4 @@ fi
 
 # Run aria2
 exec su-exec ${PUID}:${PGID} aria2c --conf-path="/workdir/aria2.conf" \
---enable-rpc \
---dht-listen-port=${BT_PORT} \
---listen-port=${BT_PORT} \
---rpc-listen-port=${RPC_PORT} $@
+--enable-rpc $@

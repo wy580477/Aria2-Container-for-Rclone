@@ -28,20 +28,14 @@ x-global: &global
       tag: "{{.Name}}"
       # 给日志添加容器名(container_name)的tag。
 services:
-  allinone:
+  aria2:
     <<: *global
-    image: ghcr.io/wy580477/aria2-aio-container:latest
-    container_name: allinone
+    image: ghcr.io/wy580477/aria2-container-for-rclone:main
+    container_name: aria2
     network_mode: host
     # 建议对docker不熟悉的用户选择host网络模式。
     environment:
       <<: *env
-      RPC_PORT: 6800
-      # 提供Aria2 RPC服务的端口。
-      ARIA_IPV6: "false"
-      # Aria2下载功能和DHT网络ipv6开关，不影响其他进程使用ipv6网络。设置为"true"开启ipv6。
-      BT_PORT: 51413
-      # Aria2 BT下载使用的端口，建议在防火墙设置中tcp和udp流量都放行，以提高下载速度。
       POST_MODE: copy_remote
       # Aria2自动化模式，dummy模式为无操作，move模式为下载及做种完成后移动到本地finished目录。
       # move_remote模式为下载及做种完成后先移动到本地data数据卷下finished目录，然后移动到rclone远程存储。
@@ -57,6 +51,18 @@ services:
       RCLONE_ADDR: http://localhost:56802
       # Rclone Remote Control地址，默认值适用于host网络模式。
       # 如果使用bridge网络，需要改为"http://rclone:5572"。
+    command:
+      - --dht-listen-port=51413
+      # DHT监听端口。
+      - --listen-port=51413
+      # BT监听端口。建议与上一项设置为同一端口，防火墙放行tcp和udp流量。
+      - --rpc-listen-port=6800
+      # RPC服务监听端口。
+      - --disable-ipv6=true
+      # 是否禁止ipv6。
+      - --enable-dht6=false
+      # 是否启用dht ipv6网络。
+      # 可以增加更多运行参数，会覆盖Aria2配置文件中的设置。更多运行参数可以参考Aria2官网和config/aria2目录下的配置文件。
   allinone_rclone:
     <<: *global
     image: ghcr.io/wy580477/rclone-daemon-container:latest
