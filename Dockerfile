@@ -24,4 +24,4 @@ LABEL org.label-schema.name="Aria2-AIO-Container"
 LABEL org.label-schema.description="Aria2 container with Rclone auto-upload function & more"
 LABEL org.label-schema.vcs-url="https://github.com/wy580477/Aria2-AIO-Container/"
 
-ENTRYPOINT ["sh","-c","/workdir/entrypoint.sh"]
+ENTRYPOINT ["sh","/workdir/entrypoint.sh"]
