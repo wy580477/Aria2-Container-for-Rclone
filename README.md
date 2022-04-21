@@ -36,7 +36,7 @@ http://localhost:56802
 ### 更多用法和注意事项
   - config/aria2目录下为Aria2相关配置文件，默认使用aria2.conf英文版本，可以用aria2_chs.conf中文版本重命名覆盖替换。  
   - script.conf为Aria2自动化配置文件，可以更改文件自动清理设置和指定Rclone上传目录。   
-  - 执行tracker.sh可自动下载tracker列表添加到aria2配置文件，注意这样会覆盖原来的tracker列表。
+  - 每24小时自动下载tracker列表更新，注意这样会覆盖原来的tracker列表。删除或重命名tracker.sh可关闭此项功能。
   
  
 
