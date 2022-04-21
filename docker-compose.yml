@@ -34,7 +34,6 @@ services:
     <<: *global
     image: ghcr.io/wy580477/aria2-container-for-rclone:latest
     container_name: aria2
-    # 建议对docker不熟悉的用户选择host网络模式。
     environment:
       <<: *env
       RPC_PORT: 6800
