@@ -37,6 +37,8 @@ services:
     # 建议对docker不熟悉的用户选择host网络模式。
     environment:
       <<: *env
+      RPC_PORT: 6800
+      # Aria2远程RPC服务端口
       POST_MODE: move_remote
       # Aria2自动化模式，dummy模式为无操作，move模式为下载及做种完成后移动到本地finished目录。
       # move_remote模式为下载及做种完成后先移动到本地data数据卷下finished目录，然后移动到rclone远程存储。
@@ -51,8 +53,6 @@ services:
       # Rclone Remote Control地址，默认值适用于host网络模式。
       # 如果使用bridge网络，需要改为"http://rclone:5572"。
     command:
-      - --rpc-listen-port=6800
-      # 指定Aria2 RPC监听端口。
       - --dht-listen-port=51413
       # DHT监听端口。
       - --listen-port=51413
