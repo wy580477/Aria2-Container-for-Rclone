@@ -44,13 +44,7 @@ else
        sed -i "s|^on-bt-download-complete=/workdir/aria2/.*.sh|on-bt-download-complete=/workdir/aria2/clean.sh|g" /workdir/aria2.conf
 fi
 
-if [[ "${CLEAN_UNFINISHED_FAILED_TASK_FILES}" = "true" ]] && [[ "${POST_MODE}" != "custom" ]]; then
-       sed -i "s|^on-download-stop=/workdir/aria2/.*.sh|on-download-stop=/workdir/aria2/delete.sh|g" /workdir/aria2.conf
-elif [ "${POST_MODE}" = "custom" ]; then
-       :
-else
-       sed -i "s|^on-download-stop=/workdir/aria2/.*.sh|on-download-stop=/workdir/aria2/clean.sh|g" /workdir/aria2.conf
-fi
+/workdir/tracker_update.sh 2>/dev/null &
 
 # Run aria2
 exec su-exec ${PUID}:${PGID} aria2c --conf-path="/workdir/aria2.conf" \
