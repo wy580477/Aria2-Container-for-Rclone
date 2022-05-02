@@ -38,7 +38,7 @@ services:
       <<: *env
       RPC_PORT: 6800
       # Aria2远程RPC服务端口
-      POST_MODE: move_remote
+      POST_MODE: move
       # Aria2自动化模式，dummy模式为无操作，move模式为下载及做种完成后移动到本地finished目录。
       # move_remote模式为下载及做种完成后先移动到本地data数据卷下finished目录，然后移动到rclone远程存储。
       # move_remote_only模式为下载及做种完成后移动到rclone远程存储。
