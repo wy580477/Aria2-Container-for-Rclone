@@ -55,7 +55,7 @@ services:
       - --dht-listen-port=51413
       # DHT监听端口。
       - --listen-port=51413
-      # BT监听端口。建议与上一项设置为同一端口，防火墙放行tcp和udp流量。
+      # BT监听端口。建议与上一项设置为同一端口，方便防火墙设置放行tcp和udp流量。
       - --rpc-listen-all=false
       # 是否接受来自外部ip的rpc连接，仅建议在家庭局域网环境内可设置为true，便于直接访问。
       # 如果通过Web服务反代，可以设置为false。
