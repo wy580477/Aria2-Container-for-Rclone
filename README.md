@@ -9,7 +9,7 @@
 集成了Aria2和经过修改的P3TERX大佬Aria2自动化脚本，与[Rclone-Daemon-Container](https://github.com/wy580477/Aria2-AIO-Container)配合，实现自动化上传功能。
  
  1. 开箱即用，只需要准备rclone.conf配置文件, 容器一切配置都预备齐全。
- 2. AMD64/i386/Arm64/Armv7/Armv6/s390x/ppc64le多架构支持。
+ 2. AMD64/i386/Arm64/Armv7多架构支持。
  3. Aria2和Rclone多种联动模式，有BT下载完成做种前立即开始上传功能，适合有长时间做种需求的用户。
  4. 独立的Rclone容器以daemon方式运行，支持自动开启Web UI服务，可在docker-compose文件中自定义运行参数。
  5. 使用Rclone RC界面传递命令，Aria2和Rclone可以部署在不同的host上，更加灵活。
